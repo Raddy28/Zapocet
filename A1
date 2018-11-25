@@ -1,0 +1,134 @@
+
+#include <iostream>
+#include <stdio.h>
+#include <string.h>
+
+
+using namespace std;
+
+class Zoo
+{
+private:
+	char Miesto[40];
+	char Druh[40];
+	int Cislo;
+	int Cena;
+public:
+	Zoo(){}
+	Zoo(char *Miesto, char *Druh, int Cislo, int Cena);
+
+
+	char *GetMiesto();
+	char *GetDruh();
+	int GetCislo();
+	int GetCena();
+
+	void SetMiesto(char *Place);
+	void SetDruh(char *DruhZviera);
+	void SetCislo(int Number);
+	void SetCena(int Price);
+};
+
+
+Zoo::Zoo(char *Miesto, char *Druh, int Cislo, int Cena)
+{
+	strcpy(Zoo::Miesto , Miesto);
+	strcpy(Zoo::Druh, Druh);
+	Zoo::Cislo=Cislo;
+	Zoo::Cena=Cena;
+}
+
+void Zoo::SetMiesto(char *Place)
+{
+	strcpy(Miesto,Place);
+}
+
+char* Zoo::GetMiesto()
+{
+	char *pom;
+	pom=new char[20];
+	strcpy(pom, Miesto);
+	return pom;
+}
+
+void Zoo::SetDruh(char *DruhZviera)
+{
+	strcpy(Druh, DruhZviera);
+}
+char* Zoo::GetDruh()
+{
+	char *pom;
+	pom=new char[20];
+	strcpy(pom, Druh);
+	return pom;
+}
+
+void Zoo::SetCislo(int Number)
+{
+	Cislo=Number;
+}
+int Zoo::GetCislo()
+{
+	return Cislo;
+}
+
+void Zoo::SetCena(int Price)
+{
+	Cena=Price;
+}
+int Zoo::GetCena()
+{
+	return Cena;
+}
+
+int main()
+{
+	char Miesto[40], Druh[40];
+	int Cislo, Cena;
+	int Pocet;
+	int i=0, j=0;
+
+	Zoo objekty[10];
+	
+	cout << "Vlozte pocet (max. 3):  ";
+	cin >> Pocet;
+
+	if ((Pocet > 3) || (Pocet==0))
+		cout <<"Zly pocet" << endl;
+	
+	else
+	{	
+		while(i < Pocet)
+	{
+		i++;
+		cout << endl << "Vlozte sidlo zoo "<< i << ": ";
+		cin>> Miesto;
+		cout << "Vlozte druh zvier. "<< i << ": ";
+		cin>> Druh;
+		cout << "Vlozte cislo zvier. " << i <<": ";
+		cin >> Cislo;
+		cout << "Vlozte cenu "<< i << ": ";
+		cin >> Cena;
+		
+		
+		objekty[i].SetMiesto(Miesto);	
+		objekty[i].SetDruh(Druh);	
+		objekty[i].SetCislo(Cislo);	
+		objekty[i].SetCena(Cena);	
+		
+		}
+	cout << endl << endl;
+
+	for (i=1; i<Pocet+1; i++)
+	{
+		cout << "Miesto : " << objekty[i].GetMiesto() << endl;
+		cout << "Druh   : " << objekty[i].GetDruh() << endl;
+		cout << "Cislo  : " << objekty[i].GetCislo() << endl;
+		cout << "Cena   : " << objekty[i].GetCena() << endl;
+		cout << endl << "_______________________________________________________________" <<endl;
+	}
+	
+		}
+
+return 0;
+}
