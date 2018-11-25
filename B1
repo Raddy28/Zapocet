@@ -1,0 +1,138 @@
+
+#include <iostream>
+#include <string.h>
+using namespace std;
+
+class Auto
+{
+private:
+    char Miesto[50];
+    char Znacka[50];
+    int Rok;
+    int Cislo;
+    int Cena;
+public:
+    Auto (){}
+    Auto (char *Miesto, char *Znacka, int Rok, int Cislo, int Cena);
+
+    char *GetMiesto();
+    char *GetZnacka();
+    int GetRok();
+    int GetCislo();
+    int GetCena();
+
+    void SetMiesto (char *Place);
+    void SetZnacka (char *Brand);
+    void SetRok(int Year);
+    void SetCislo(int Number);
+    void SetCena(int Price);
+};
+
+Auto::Auto(char *Miesto, char *Znacka, int Rok, int Cislo, int Cena)
+{
+    strcpy(Auto::Miesto, Miesto);
+    strcpy(Auto::Znacka, Znacka);
+    Auto::Rok=Rok;
+    Auto::Cislo=Cislo;
+    Auto::Cena=Cena;
+}
+
+void Auto::SetMiesto(char *Place)
+{
+    strcpy(Miesto,Place);
+}
+char *Auto::GetMiesto()
+{
+    return Miesto;
+}
+
+void Auto::SetZnacka(char *Brand)
+{
+    strcpy(Znacka,Brand);
+}
+char *Auto::GetZnacka()
+{
+    return Znacka;
+}
+
+void Auto::SetRok(int Year)
+{
+    Rok=Year;
+}
+int Auto::GetRok()
+{
+    return Rok;
+}
+
+void Auto::SetCislo(int Number)
+{
+    Cislo=Number;
+}
+int Auto::GetCislo()
+{
+    return Cislo;
+}
+
+void Auto::SetCena(int Price)
+{
+    Cena=Price;
+}
+int Auto::GetCena()
+{
+    return Cena;
+}
+int main()
+{
+    char Miesto[50], Znacka[50];
+    int Rok, Cislo, Cena;
+    int Pocet;
+    int i=0, j=0;
+
+    Auto objekty[5];
+
+    cout << "Vlozte pocet (max. 3):  ";
+    cin >> Pocet;
+
+    if ((Pocet > 3) || (Pocet==0))
+        cout <<"Zly pocet" << endl;
+
+    else
+    {
+        while(i < Pocet)
+        {
+            i++;
+            cout << endl << "vlozte Miesto "<< i << ". auta      : ";
+            cin>> Miesto;
+            cout << "vlozte Znacku "<< i << ". auta : ";
+            cin>> Znacka;
+            cout << "vlozte Rok " << i << ". auta : ";
+            cin >> Rok;
+            cout << "vlozte Cislo " << i <<". auta : ";
+            cin >> Cislo;
+            cout << "vlozte Cenu "<< i << ". auta : ";
+            cin >> Cena;
+
+
+            objekty[i].SetMiesto(Miesto);
+            objekty[i].SetZnacka(Znacka);
+            objekty[i].SetRok(Rok);
+            objekty[i].SetCislo(Cislo);
+            objekty[i].SetCena(Cena);
+
+        }
+        cout << endl << endl;
+
+        for (i=1; i<Pocet+1; i++)
+        {
+            cout << "Miesto : " << objekty[i].GetMiesto() << endl;
+            cout << "Znacka : " << objekty[i].GetZnacka() << endl;
+            cout << "Rok    : " << objekty[i].GetRok() << endl;
+            cout << "Cislo  : " << objekty[i].GetCislo() << endl;
+            cout << "Cena   : " << objekty[i].GetCena() << endl;
+            cout << endl << "_______________________________________________________________";
+        }
+
+    }
+
+    return 0;
+}
