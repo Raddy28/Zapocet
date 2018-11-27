@@ -1,134 +1,267 @@
+#include "Zoo.h"
+
+int main()
+{
+	char miesto_zoo[30], zviera[30];
+	int Cislo;
+	long int Hodnota, sum=0;
+	int Pocet;
+	int i = 0, j = 0;
+
+	Zoo objekty[5];
+
+	cout << "Vlozte pocet vkladanych zvierat (max. 3):  ";
+	cin >> Pocet;
+
+	if ((Pocet > 3) || (Pocet == 0))
+		cout << "Zly pocet" << endl;
+
+	else
+	{
+		while (i < Pocet)
+		{
+			i++;
+			cout << endl << "vlozte miesto ZOO, kde zviera zije      : ";
+			cin >> miesto_zoo;
+			cout << "vlozte druh zvierata : ";
+			cin >> zviera;
+			cout << "vlozte cislo zvierata : ";
+			cin >> Cislo;
+			cout << "vlozte spolocensku hodnotu zvierata [Eur] : ";
+			cin >> Hodnota;
+
+
+			objekty[i].SetMiesto(miesto_zoo);
+			objekty[i].SetZviera(zviera);
+			objekty[i].SetCislo(Cislo);
+			objekty[i].SetHodnota(Hodnota);
+
+		}
+
+		i++;
+		objekty[i].SetMiesto((char*)"Bojnice");
+		objekty[i].SetZviera((char*)"slon");
+		objekty[i].SetCislo(1002);
+		objekty[i].SetHodnota(11000);
+
+		sum += objekty[i].GetHodnota();
+
+		cout << "Zadane v programe: " << endl;
+		cout << "Miesto : " << objekty[i].GetMiesto() << endl;
+		cout << "Znacka : " << objekty[i].GetZviera() << endl;
+		cout << "Cislo  : " << objekty[i].GetCislo() << endl;
+		cout << "Cena   : " << objekty[i].GetHodnota() << endl;
+		cout << endl << "_______________________________________________________________" << endl;
+
+
+		cout << endl << endl;
+		cout << "Zadane uzivatelom: " << endl;
+		for (i = 1; i < Pocet + 1; i++)
+		{
+			cout << "miesto zoo : " << objekty[i].GetMiesto() << endl;
+			cout << "zviera   : " << objekty[i].GetZviera() << endl;
+			cout << "cislo zvierata  : " << objekty[i].GetCislo() << endl;
+			cout << "spoloc. hodnota zvierata [Eur]   : " << objekty[i].GetHodnota() << endl;
+			cout << endl << "_______________________________________________________________" << endl;
+			sum += objekty[i].GetHodnota();
+		}
+
+		cout << "celkova spolocenska hodnota uvedenych 4-och zvierat [Eur] :" << sum;
+
+		
+	}
+
+	return 0;
+}
+
+
+
+#include "Zoo.h"
+
+Zoo::Zoo(char *miesto, char *zviera, int cislo, int hodnota)
+{
+	strcpy(Zoo::miesto_zoo, miesto);
+	strcpy(Zoo::zviera, zviera);
+	Zoo::cis_zvierata = cislo;
+	Zoo::hodn_zvierata = hodnota;
+}
+
+void Zoo::SetMiesto(char *Place)
+{
+	strcpy(miesto_zoo, Place);
+}
+
+char *Zoo::GetMiesto()
+{
+	/*char *pom;
+	pom = new char[20];
+	strcpy(pom, miesto_zoo);
+	return pom;*/
+	return miesto_zoo;
+}
+
+void Zoo::SetZviera(char *Animal)
+{
+	strcpy(zviera, Animal);
+}
+char *Zoo::GetZviera()
+{
+	/*char *pom;
+	pom = new char[20];
+	strcpy(pom, zviera);
+	return pom;*/
+	return zviera;
+}
+
+void Zoo::SetCislo(int Number)
+{
+	cis_zvierata = Number;
+}
+int Zoo::GetCislo()
+{
+	return cis_zvierata;
+}
+
+void Zoo::SetHodnota(int Value)
+{
+	hodn_zvierata = Value;
+}
+int Zoo::GetHodnota()
+{
+	return hodn_zvierata;
+}
+
 
 #include <iostream>
-#include <stdio.h>
-#include <string.h>
-
-
 using namespace std;
 
 class Zoo
 {
 private:
-	char Miesto[40];
-	char Druh[40];
-	int Cislo;
-	int Cena;
+	char miesto_zoo[30];
+	char zviera[30];
+	int cis_zvierata;
+	long int hodn_zvierata;
 public:
-	Zoo(){}
-	Zoo(char *Miesto, char *Druh, int Cislo, int Cena);
+	Zoo() {}
+	Zoo(char *miesto, char *zviera, int cislo, int hodnota);
 
 
 	char *GetMiesto();
-	char *GetDruh();
+	char *GetZviera();
 	int GetCislo();
-	int GetCena();
+	int GetHodnota();
 
 	void SetMiesto(char *Place);
-	void SetDruh(char *DruhZviera);
+	void SetZviera(char *Animal);
 	void SetCislo(int Number);
-	void SetCena(int Price);
+	void SetHodnota(int Value);
 };
 
 
-Zoo::Zoo(char *Miesto, char *Druh, int Cislo, int Cena)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#include<time.h>
+#include<iostream>
+using namespace std;
+
+/*int vyhladavanie(int m, int n, long *cisla)
 {
-	strcpy(Zoo::Miesto , Miesto);
-	strcpy(Zoo::Druh, Druh);
-	Zoo::Cislo=Cislo;
-	Zoo::Cena=Cena;
+	int zaciatok = 1;
+	int koniec = 20;
+	int pivot;
+	pivot = (zaciatok + koniec) / 2;                       // Find Mid Location of Array
+
+	while (zaciatok <= koniec && cisla[pivot] != n)      // Compare Item and Value of Mid
+	{
+		if (cisla[pivot] < n)
+			zaciatok = pivot + 1;
+		else
+			koniec = pivot - 1;
+
+		pivot = (zaciatok + koniec) / 2;
+	}*/
+
+
+int NajdiCisloB(int x, int pole[], int dlzka)
+{
+    int zaciatok = 1;
+    int koniec = 20;
+    int pivot;
+    pivot = (zaciatok + koniec) / 2;                       // Find Mid Location of Array
+
+    while (zaciatok <= koniec && pole[pivot] != x)      // Compare Item and Value of Mid
+    {
+        if (pole[pivot] < x)
+            zaciatok = pivot + 1;
+        else
+            koniec = pivot - 1;
+
+        pivot = (zaciatok + koniec) / 2;
+    }
+
+
+
+    if (pole[pivot] == x)
+    {
+        cout << "\nNasla sa zhoda na indexe : " << pivot << endl;
+    }
+    else
+    {
+        cout << "Nenasla sa zhoda" << endl;
+    }
+
+
+    return pivot;
 }
 
-void Zoo::SetMiesto(char *Place)
-{
-	strcpy(Miesto,Place);
-}
-
-char* Zoo::GetMiesto()
-{
-	char *pom;
-	pom=new char[20];
-	strcpy(pom, Miesto);
-	return pom;
-}
-
-void Zoo::SetDruh(char *DruhZviera)
-{
-	strcpy(Druh, DruhZviera);
-}
-char* Zoo::GetDruh()
-{
-	char *pom;
-	pom=new char[20];
-	strcpy(pom, Druh);
-	return pom;
-}
-
-void Zoo::SetCislo(int Number)
-{
-	Cislo=Number;
-}
-int Zoo::GetCislo()
-{
-	return Cislo;
-}
-
-void Zoo::SetCena(int Price)
-{
-	Cena=Price;
-}
-int Zoo::GetCena()
-{
-	return Cena;
-}
 
 int main()
 {
-	char Miesto[40], Druh[40];
-	int Cislo, Cena;
-	int Pocet;
-	int i=0, j=0;
+    int i, x, dlzka;
+    int pole[101]/*, *hladane*/;
+    //int zaciatok, koniec, pivot;
 
-	Zoo objekty[10];
-	
-	cout << "Vlozte pocet (max. 3):  ";
-	cin >> Pocet;
+    cout << "Vlozte velkost pola: ";
+    cin >> dlzka;
 
-	if ((Pocet > 3) || (Pocet==0))
-		cout <<"Zly pocet" << endl;
-	
-	else
-	{	
-		while(i < Pocet)
-	{
-		i++;
-		cout << endl << "Vlozte sidlo zoo "<< i << ": ";
-		cin>> Miesto;
-		cout << "Vlozte druh zvier. "<< i << ": ";
-		cin>> Druh;
-		cout << "Vlozte cislo zvier. " << i <<": ";
-		cin >> Cislo;
-		cout << "Vlozte cenu "<< i << ": ";
-		cin >> Cena;
-		
-		
-		objekty[i].SetMiesto(Miesto);	
-		objekty[i].SetDruh(Druh);	
-		objekty[i].SetCislo(Cislo);	
-		objekty[i].SetCena(Cena);	
-		
-		}
-	cout << endl << endl;
+    while (dlzka>100 || dlzka<0)
+    {
+        cout << "Zadali ste zlu hodnotu pola, prosim skuste to este raz:";
+        cin >> dlzka;
+    }
 
-	for (i=1; i<Pocet+1; i++)
-	{
-		cout << "Miesto : " << objekty[i].GetMiesto() << endl;
-		cout << "Druh   : " << objekty[i].GetDruh() << endl;
-		cout << "Cislo  : " << objekty[i].GetCislo() << endl;
-		cout << "Cena   : " << objekty[i].GetCena() << endl;
-		cout << endl << "_______________________________________________________________" <<endl;
-	}
-	
-		}
 
-return 0;
+    srand((unsigned)time(NULL));
+
+
+    pole[0] = (long)rand() % 80;
+
+    for (i = 1; i <= dlzka; i++)
+        pole[i] = pole[i - 1] + rand() % 80 ; 
+//pole[i] = pole[i - 1] + rand() / (RAND_MAX + 1) * 80 + 1 ;
+
+
+    for (i = 1; i <= dlzka; i++)
+        cout << "stat_pole [" << i - 1 << "]  :  " << pole[i - 1] << endl;
+
+    cout << "vlozte hladane cislo: ";
+    cin >> x;
+
+    int index;
+    index = NajdiCisloB(x, pole, dlzka);
+
+    return 0;
 }
